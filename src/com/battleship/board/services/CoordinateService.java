@@ -1,7 +1,7 @@
 package com.battleship.board.services;
 
 import com.battleship.board.Coordinate;
-import com.battleship.board.Error;
+import com.battleship.board.enums.Error;
 import com.utils.InputScanner;
 
 public class CoordinateService {
@@ -13,7 +13,7 @@ public class CoordinateService {
             int column = Character.getNumericValue(formatedInput.charAt(1));
             return new Coordinate(line, column);
         }
-        else System.out.println("Invalid input, please insert another value");
+        else System.out.println("This coordinate value is not valid, please insert another value");
 
         return new Coordinate(-1, -1);
     }
@@ -21,8 +21,11 @@ public class CoordinateService {
 
     public static String coordinateInputHandler(String coordinateString){
 
-        if (coordinateString.isBlank() || coordinateString.length() < 2)
+        if (coordinateString.length() != 2){
+            if(coordinateString.length() > 2) System.out.println("Too much longer input");
+            else  System.out.println("Too short input");
             return Error.INVALID_INPUT.name();
+        }
 
         char line = Character.toUpperCase(coordinateString.charAt(0));
         int column = Character.getNumericValue(coordinateString.charAt(1));
