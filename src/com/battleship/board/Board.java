@@ -52,27 +52,15 @@ public class Board {
     }
 
     private boolean isEmpty(Coordinate coordinate){
-        if (this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] == CoordinateStates.EMPTY){
-            return true;
-        } else{
-            return false;
-        }
+        return (this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] == CoordinateStates.EMPTY);
     }
 
     private boolean hasSubmarine(Coordinate coordinate){
-        if(this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] == CoordinateStates.SUBMARINE){
-            return true;
-        } else {
-            return false;
-        }
+        return (this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] == CoordinateStates.SUBMARINE);
     }
 
     private boolean isPlayInvalid(Coordinate coordinate){
-        if(!(this.isEmpty(coordinate)||this.hasSubmarine(coordinate))){
-            return true;
-        } else{
-            return false;
-        }
+        return (!(this.isEmpty(coordinate)||this.hasSubmarine(coordinate)));
     }
 
     public void printGamingBoard(){
@@ -95,6 +83,14 @@ public class Board {
         testboard.createEmptyBoard();
         testboard.printGamingBoard();
 
-    }
+        Coordinate coordinate = new Coordinate(0,0);
 
+        System.out.println(testboard.isPlayInvalid(coordinate));
+
+        testboard.receivePlay(coordinate);
+
+        System.out.println(testboard.isPlayInvalid(coordinate));
+
+        testboard.printGamingBoard();
+    }
 }
