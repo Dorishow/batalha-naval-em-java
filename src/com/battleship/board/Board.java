@@ -76,6 +76,7 @@ public class Board {
     }
 
     public void printGamingBoard(){
+        System.out.println("     0    1    2    3    4    5    6    7    8    9  ");
         for (int lineIndex=0; lineIndex<10; lineIndex++){
 //            Print line headers and board lines
             System.out.printf(" %C ", CoordinateService.convertNumberToLetter(lineIndex));
