@@ -10,6 +10,14 @@ public class Coordinate {
     private final int columnFloor = 0;
     private final int columnRoof = 9;
 
+    public int getLine() {
+        return line;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
     public Coordinate(int line, int column){
         this.line = line;
         this.column = column;
