@@ -8,17 +8,16 @@ import com.utils.RandomNumbersGenerator;
 public class Bot {
 
 
-    final private int fleetSize = 3;
-    final private Board Board = new Board(this.fleetSize);
-    private Coordinate coordinate;
+    private final int fleetSize = 3;
+    private final Board Board = new Board(this.fleetSize);
 
     public Board getBoard() { return Board; }
-    public int getFleetSize() { return fleetSize; }
 
     public void setupBoard(){
        Board.createEmptyBoard();
 
         for (int i = 0; i < this.fleetSize; i++) {
+            Coordinate coordinate;
             do coordinate = this.generateRandomCoordinate();
             while(this.isPositionAlreadyOccupied(coordinate));
             Board.placeShips(coordinate);
