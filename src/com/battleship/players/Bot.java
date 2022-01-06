@@ -7,18 +7,13 @@ import com.utils.RandomNumbersGenerator;
 
 public class Bot {
 
-    public int getFleetSize() {
-        return fleetSize;
-    }
 
-    private int fleetSize = 10;
-
-    public Board getBoard() {
-        return Board;
-    }
-
-    private Board Board = new Board(this.fleetSize);
+    final private int fleetSize = 3;
+    final private Board Board = new Board(this.fleetSize);
     private Coordinate coordinate;
+
+    public Board getBoard() { return Board; }
+    public int getFleetSize() { return fleetSize; }
 
     public void setupBoard(){
        Board.createEmptyBoard();
@@ -30,7 +25,6 @@ public class Bot {
         }
     }
 
-
     public Coordinate makePlay(Board opponentBoard){
         Coordinate attackCoordinate = this.generateRandomCoordinate();
         while(this.hasPlayAlreadyBeenMade(attackCoordinate,opponentBoard)){
@@ -39,21 +33,17 @@ public class Bot {
         return attackCoordinate;
     }
 
-
     private Coordinate generateRandomCoordinate(){
         return new Coordinate(RandomNumbersGenerator.generateRandomNumber.nextInt(10),RandomNumbersGenerator.generateRandomNumber.nextInt(10));
     }
-
 
     private boolean isPositionAlreadyOccupied(Coordinate coordinate){
         return Board.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
     }
 
-
     private boolean hasPlayAlreadyBeenMade(Coordinate attackedCoordinate, Board opponentBoard){
         return opponentBoard.receivePlay(attackedCoordinate) == Error.INVALID_PLAY.name();
     }
-
 
     public static void main(String args[]) {
         Bot botTest = new Bot();

@@ -24,18 +24,15 @@ public class Coordinate {
     }
 
     public boolean isOnRoof( ){
-        if(this.line <= this.lineRoof && this.column <= this.columnRoof) return true;
-        return false;
+        return (this.line <= this.lineRoof && this.column <= this.columnRoof);
     }
 
     public boolean isOnFloor(){
-        if(this.line >= this.lineFloor && this.column >= this.columnFloor) return true;
-        return false;
+        return (this.line >= this.lineFloor && this.column >= this.columnFloor);
     }
 
     public boolean isValid(){
-        if(this.isOnFloor() && this.isOnRoof()) return true;
-        return false;
+        return (this.isOnFloor() && this.isOnRoof());
     }
 
     @Override
