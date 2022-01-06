@@ -2,8 +2,8 @@ package com.battleship.board;
 
 public class Coordinate {
 
-    private int line;
-    private int column;
+    private final int line;
+    private final int column;
 
     private final int lineFloor = 0;
     private final int lineRoof = 9;

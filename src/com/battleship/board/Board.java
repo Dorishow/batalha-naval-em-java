@@ -10,15 +10,11 @@ public class Board {
     private int gamingBoardLineLength = 10;
     private int gamingBoardColumnLength = 10;
 
-    public int getFleetSize() {
-        return fleetSize;
-    }
+    public int getFleetSize() { return fleetSize; }
 
     private int fleetSize;
 
-    public Board(int fleetSize){
-        this.fleetSize = fleetSize;
-    }
+    public Board(int fleetSize){ this.fleetSize = fleetSize; }
 
     private CoordinateStates[][] gamingBoard = new CoordinateStates[this.gamingBoardLineLength][this.gamingBoardColumnLength];
 
@@ -31,20 +27,18 @@ public class Board {
     }
 
     public String placeShips(Coordinate coordinate){
-        if(this.hasSubmarine(coordinate)){
+        if(this.hasSubmarine(coordinate))
             return Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
-        }
 
         this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] = CoordinateStates.SUBMARINE;
         return Status.SUBMARINE_PLACED.name();
     }
 
     public String receivePlay(Coordinate coordinate){
-        if(isPlayInvalid(coordinate)){
+        if(isPlayInvalid(coordinate))
             return Error.INVALID_PLAY.name();
-        }
 
-        System.out.printf("Enemy shooted on (%s, %d) and %s%n",
+        System.out.printf("Took a shot on (%s, %d) and %s%n",
                 CoordinateService.convertNumberToLetter(coordinate.getLine()),
                 coordinate.getColumn(),
                 this.playResult(coordinate));
@@ -61,7 +55,7 @@ public class Board {
                 this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] = CoordinateStates.DESTROYED_SUBMARINE;
                 this.fleetSize--;
                 return Status.SUBMARINE_HIT.message;
-           default: return "";
+            default: return "";
         }
     }
 
@@ -84,9 +78,8 @@ public class Board {
         for (int lineIndex=0; lineIndex<10; lineIndex++){
         printDashedLine();
         System.out.printf("|  %C  |", CoordinateService.convertNumberToLetter(lineIndex));
-            for (int columnIndex=0; columnIndex<10; columnIndex++){
+            for (int columnIndex=0; columnIndex<10; columnIndex++)
                 System.out.printf("  %C  |", gamingBoard[lineIndex][columnIndex].symbol);
-            }
             System.out.printf("%n");
         }
         printDashedLine();
