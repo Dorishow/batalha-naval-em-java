@@ -15,38 +15,36 @@ public class Bot {
        botBoard.createEmptyBoard();
 
         for (int i = 0; i < this.fleetSize; i++) {
-            coordinate = this.generateRandomCoordinate();
-
-            while(this.isPositionAlreadyOccupied()){
-                coordinate = this.generateRandomCoordinate();
-            }
+            do coordinate = this.generateRandomCoordinate();
+            while(this.isPositionAlreadyOccupied(coordinate));
             botBoard.placeShips(coordinate);
         }
     }
 
+
     private Coordinate makePlay(Board opponentBoard){
-
-        Coordinate attackedCoordinate = this.generateRandomCoordinate();
-
-        while(this.hasPlayAlreadyBeenMade(attackedCoordinate,opponentBoard)){
-            attackedCoordinate = this.generateRandomCoordinate();
+        Coordinate attackCoordinate = this.generateRandomCoordinate();
+        while(this.hasPlayAlreadyBeenMade(attackCoordinate,opponentBoard)){
+            attackCoordinate = this.generateRandomCoordinate();
         }
-
-        return attackedCoordinate;
+        return attackCoordinate;
     }
+
 
     private Coordinate generateRandomCoordinate(){
-        coordinate = new Coordinate(RandomNumbersGenerator.generateRandomNumber.nextInt(10),RandomNumbersGenerator.generateRandomNumber.nextInt(10));
-        return coordinate;
+        return new Coordinate(RandomNumbersGenerator.generateRandomNumber.nextInt(10),RandomNumbersGenerator.generateRandomNumber.nextInt(10));
     }
 
-    private boolean isPositionAlreadyOccupied(){
-        return botBoard.placeShips(coordinate)== Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
+
+    private boolean isPositionAlreadyOccupied(Coordinate coordinate){
+        return botBoard.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
     }
+
 
     private boolean hasPlayAlreadyBeenMade(Coordinate attackedCoordinate, Board opponentBoard){
         return opponentBoard.receivePlay(attackedCoordinate)==Error.INVALID_PLAY.name();
     }
+
 
     public static void main(String args[]) {
         Bot botTest = new Bot();
