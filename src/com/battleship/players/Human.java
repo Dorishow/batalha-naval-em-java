@@ -6,18 +6,21 @@ import com.battleship.board.enums.Error;
 import com.battleship.board.services.CoordinateService;
 
 public class Human {
-    public int getFleetSize() {
-        return fleetSize;
-    }
 
     private int fleetSize = 3;
 
-    public com.battleship.board.Board getBoard() {
-        return Board;
+    public String getName() { return name;
     }
 
+    private String name = "Player";
     private Board Board = new Board(this.fleetSize);
     private Coordinate coordinate;
+
+    public com.battleship.board.Board getBoard() { return Board; }
+
+    public int getFleetSize() { return fleetSize; }
+
+    public void setName(String name) { this.name = name; }
 
     public void setupBoard(){
         Board.createEmptyBoard();
@@ -25,12 +28,11 @@ public class Human {
         for (int i = 0; i < this.fleetSize;) {
             System.out.printf("Set a coordinate to place the %dº ship: %n", i + 1);
             coordinate = CoordinateService.createCoordinateByInput();
-            if (coordinate.isValid()){
+            if (coordinate.isValid())
                 if(!this.hasSubmarineOnCoordinate(coordinate)){
                     Board.placeShips(coordinate);
                     i++;
                 }
-            }
         }
     }
 
@@ -46,13 +48,13 @@ public class Human {
 
     public Coordinate makePlay(Board opponentBoard){
         Coordinate attackCoordinate;
-        do {
-            System.out.printf("Set a coordinate to attack the enemy's Board: %n");
-            attackCoordinate = CoordinateService.createCoordinateByInput();
-        }
-        while(this.hasPlayAlreadyBeenMade(attackCoordinate,opponentBoard));
-
-        return attackCoordinate;
+        System.out.printf("%nSet a coordinate to attack the enemy's Board: %n");
+        attackCoordinate = CoordinateService.createCoordinateByInput();
+        if (attackCoordinate.isValid())
+            if(!this.hasPlayAlreadyBeenMade(attackCoordinate, opponentBoard))
+                return attackCoordinate;
+        System.out.println("This play is not valid");
+        return makePlay(opponentBoard);
     }
 
     public void printPlayerBoard(){
@@ -68,23 +70,23 @@ public class Human {
         Test.setupBoard();
         BotTest.setupBoard();
 
-//        Test.HumanBoard.printGamingBoard();
-
         while (Test.getBoard().getFleetSize() != 0 && BotTest.getBoard().getFleetSize() != 0) {
             System.out.printf("The player attacks %n");
-
             Coordinate Jogada = Test.makePlay(BotTest.getBoard());
             BotTest.getBoard().receivePlay(Jogada);
             BotTest.getBoard().printGamingBoard();
 
             System.out.printf("The bot attacks %n");
-
             Coordinate JogadaBot = BotTest.makePlay(Test.getBoard());
             Test.Board.receivePlay(JogadaBot);
             Test.printPlayerBoard();
-
-            System.out.println(BotTest.getFleetSize());
-
         }
+
+        if (Test.getBoard().getFleetSize() == 0)
+            System.out.println("Bot ganhou o jogo");
+        else
+            System.out.println("Player ganhouu o jogo");
     }
+
+
 }
