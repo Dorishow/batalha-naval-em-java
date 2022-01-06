@@ -7,22 +7,31 @@ import com.utils.RandomNumbersGenerator;
 
 public class Bot {
 
+    public int getFleetSize() {
+        return fleetSize;
+    }
+
     private int fleetSize = 10;
-    private Board botBoard = new Board();
+
+    public Board getBoard() {
+        return Board;
+    }
+
+    private Board Board = new Board(this.fleetSize);
     private Coordinate coordinate;
 
     public void setupBoard(){
-       botBoard.createEmptyBoard();
+       Board.createEmptyBoard();
 
         for (int i = 0; i < this.fleetSize; i++) {
             do coordinate = this.generateRandomCoordinate();
             while(this.isPositionAlreadyOccupied(coordinate));
-            botBoard.placeShips(coordinate);
+            Board.placeShips(coordinate);
         }
     }
 
 
-    private Coordinate makePlay(Board opponentBoard){
+    public Coordinate makePlay(Board opponentBoard){
         Coordinate attackCoordinate = this.generateRandomCoordinate();
         while(this.hasPlayAlreadyBeenMade(attackCoordinate,opponentBoard)){
             attackCoordinate = this.generateRandomCoordinate();
@@ -37,12 +46,12 @@ public class Bot {
 
 
     private boolean isPositionAlreadyOccupied(Coordinate coordinate){
-        return botBoard.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
+        return Board.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
     }
 
 
     private boolean hasPlayAlreadyBeenMade(Coordinate attackedCoordinate, Board opponentBoard){
-        return opponentBoard.receivePlay(attackedCoordinate)==Error.INVALID_PLAY.name();
+        return opponentBoard.receivePlay(attackedCoordinate) == Error.INVALID_PLAY.name();
     }
 
 
@@ -51,13 +60,13 @@ public class Bot {
 
         botTest.setupBoard();
 
-        botTest.botBoard.printGamingBoard();
+        botTest.Board.printGamingBoard();
 
         for(int i=0; i<40; i++) {
-            Coordinate JogadaBot = botTest.makePlay(botTest.botBoard);
-            botTest.botBoard.receivePlay(JogadaBot);
+            Coordinate JogadaBot = botTest.makePlay(botTest.Board);
+            botTest.Board.receivePlay(JogadaBot);
 
-            botTest.botBoard.printGamingBoard();
+            botTest.Board.printGamingBoard();
         }
     }
 }

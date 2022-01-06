@@ -10,6 +10,16 @@ public class Board {
     private int gamingBoardLineLength = 10;
     private int gamingBoardColumnLength = 10;
 
+    public int getFleetSize() {
+        return fleetSize;
+    }
+
+    private int fleetSize;
+
+    public Board(int fleetSize){
+        this.fleetSize = fleetSize;
+    }
+
     private CoordinateStates[][] gamingBoard = new CoordinateStates[this.gamingBoardLineLength][this.gamingBoardColumnLength];
 
     public void createEmptyBoard(){
@@ -34,7 +44,10 @@ public class Board {
             return Error.INVALID_PLAY.name();
         }
 
-        System.out.println(this.playResult(coordinate));
+        System.out.printf("Enemy shooted on (%s, %d) and %s%n",
+                CoordinateService.convertNumberToLetter(coordinate.getLine()),
+                coordinate.getColumn(),
+                this.playResult(coordinate));
 
         return Status.PLAY_EXECUTED.name();
     }
@@ -46,6 +59,7 @@ public class Board {
                 return Status.WATER_HIT.message;
             case SUBMARINE:
                 this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] = CoordinateStates.DESTROYED_SUBMARINE;
+                this.fleetSize--;
                 return Status.SUBMARINE_HIT.message;
            default: return "";
         }
@@ -64,7 +78,6 @@ public class Board {
     }
 
     public void printGamingBoard(){
-        System.out.printf("%n");
 
         printDashedLine();
         printTableHeadder();
@@ -90,7 +103,7 @@ public class Board {
 
     public static void main(String args[]){
 
-        Board testboard = new Board();
+        Board testboard = new Board(10);
 
         testboard.createEmptyBoard();
         testboard.printGamingBoard();

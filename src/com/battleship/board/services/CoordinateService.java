@@ -56,7 +56,7 @@ public class CoordinateService {
         }
     }
 
-    public static int convertNumberToLetter(int number){
+    public static char convertNumberToLetter(int number){
         switch (number){
             case 0:   return 'A';
             case 1:   return 'B';
@@ -68,7 +68,7 @@ public class CoordinateService {
             case 7:   return 'H';
             case 8:   return 'I';
             case 9:   return 'J';
-            default:  return -1;
+            default:  return ' ';
         }
     }
 
