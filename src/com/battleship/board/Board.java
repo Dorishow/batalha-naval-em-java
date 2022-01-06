@@ -29,7 +29,7 @@ public class Board {
         return Status.SUBMARINE_PLACED.name();
     }
 
-    private String receivePlay(Coordinate coordinate){
+    public String receivePlay(Coordinate coordinate){
         if(isPlayInvalid(coordinate)){
             return Error.INVALID_PLAY.name();
         }
@@ -43,10 +43,10 @@ public class Board {
        switch (this.gamingBoard[coordinate.getLine()][coordinate.getColumn()]){
             case EMPTY:
                 this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] = CoordinateStates.WATER_HIT;
-                return Status.WATER_HIT.name();
+                return Status.WATER_HIT.message;
             case SUBMARINE:
                 this.gamingBoard[coordinate.getLine()][coordinate.getColumn()] = CoordinateStates.DESTROYED_SUBMARINE;
-                return Status.SUBMARINE_HIT.name();
+                return Status.SUBMARINE_HIT.message;
            default: return "";
         }
     }
@@ -90,6 +90,16 @@ public class Board {
         testboard.receivePlay(coordinate);
 
         System.out.println(testboard.isPlayInvalid(coordinate));
+
+        testboard.printGamingBoard();
+
+        Coordinate coordinate2 = new Coordinate(4,2);
+
+        testboard.placeShips(coordinate2);
+
+        testboard.printGamingBoard();
+
+        testboard.receivePlay(coordinate2);
 
         testboard.printGamingBoard();
     }
