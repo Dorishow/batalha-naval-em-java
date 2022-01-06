@@ -64,17 +64,29 @@ public class Board {
     }
 
     public void printGamingBoard(){
-        System.out.println("     0    1    2    3    4    5    6    7    8    9  ");
+        System.out.printf("%n");
+
+        printDashedLine();
+        printTableHeadder();
         for (int lineIndex=0; lineIndex<10; lineIndex++){
-//            Print line headers and board lines
-            System.out.printf(" %C ", CoordinateService.convertNumberToLetter(lineIndex));
+        printDashedLine();
+        System.out.printf("|  %C  |", CoordinateService.convertNumberToLetter(lineIndex));
             for (int columnIndex=0; columnIndex<10; columnIndex++){
-                System.out.printf(" |%C| ", gamingBoard[lineIndex][columnIndex].symbol);
+                System.out.printf("  %C  |", gamingBoard[lineIndex][columnIndex].symbol);
             }
             System.out.printf("%n");
         }
+        printDashedLine();
+        System.out.printf("%n");
     }
 
+    public void printTableHeadder(){
+        System.out.println("|     |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |");
+    }
+
+    public void printDashedLine(){
+        System.out.println("-------------------------------------------------------------------");
+    }
 
     public static void main(String args[]){
 
