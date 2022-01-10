@@ -2,25 +2,20 @@ package com.battleship.players;
 
 import com.battleship.board.Board;
 import com.battleship.board.Coordinate;
-import com.battleship.board.enums.Error;
 import com.utils.RandomNumbersGenerator;
 
-public class Bot {
+public class Bot extends Player{
 
-
-    private final int fleetSize = 3;
-    private final Board Board = new Board(this.fleetSize);
-
-    public Board getBoard() { return Board; }
+    private String name = "Bot";
 
     public void setupBoard(){
-       Board.createEmptyBoard();
+       this.getBoard().createEmptyBoard();
 
-        for (int i = 0; i < this.fleetSize; i++) {
+        for (int i = 0; i < this.getBoard().getFleetSize(); i++) {
             Coordinate coordinate;
             do coordinate = this.generateRandomCoordinate();
-            while(this.isPositionAlreadyOccupied(coordinate));
-            Board.placeShips(coordinate);
+            while(this.hasSubmarineOnCoordinate(coordinate));
+            this.getBoard().placeShips(coordinate);
         }
     }
 
@@ -36,26 +31,18 @@ public class Bot {
         return new Coordinate(RandomNumbersGenerator.generateRandomNumber.nextInt(10),RandomNumbersGenerator.generateRandomNumber.nextInt(10));
     }
 
-    private boolean isPositionAlreadyOccupied(Coordinate coordinate){
-        return Board.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
-    }
-
-    private boolean hasPlayAlreadyBeenMade(Coordinate attackedCoordinate, Board opponentBoard){
-        return opponentBoard.receivePlay(attackedCoordinate) == Error.INVALID_PLAY.name();
-    }
-
     public static void main(String args[]) {
         Bot botTest = new Bot();
 
         botTest.setupBoard();
 
-        botTest.Board.printGamingBoard();
+        botTest.getBoard().printGamingBoard();
 
         for(int i=0; i<40; i++) {
-            Coordinate JogadaBot = botTest.makePlay(botTest.Board);
-            botTest.Board.receivePlay(JogadaBot);
+            Coordinate JogadaBot = botTest.makePlay(botTest.getBoard());
+            botTest.getBoard().receivePlay(JogadaBot);
 
-            botTest.Board.printGamingBoard();
+            botTest.getBoard().printGamingBoard();
         }
     }
 }
