@@ -60,9 +60,9 @@ public class Human extends Player{
         }
 
         if (Test.getBoard().getFleetSize() == 0)
-            System.out.println("Bot ganhou o jogo");
+            System.out.println("Bot WINS");
         else
-            System.out.printf("%s ganhou o jogo", Test.getName());
+            System.out.printf("%s WINS", Test.getName());
     }
 
 
