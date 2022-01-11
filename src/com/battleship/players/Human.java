@@ -11,7 +11,7 @@ public class Human extends Player{
     public void setupBoard(){
         this.getBoard().createEmptyBoard();
 
-        for (int i = 0; i < this.getBoard().getFleetSize();) {
+        for (int i = 0; i < this.fleetSize;) {
             System.out.printf("Set a coordinate to place the %dº ship: %n", i + 1);
             Coordinate coordinate = CoordinateService.createCoordinateByInput();
             if (coordinate.isValid())
