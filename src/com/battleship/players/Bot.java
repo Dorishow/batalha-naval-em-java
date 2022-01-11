@@ -11,7 +11,7 @@ public class Bot extends Player{
     public void setupBoard(){
        this.getBoard().createEmptyBoard();
 
-        for (int i = 0; i < this.getBoard().getFleetSize(); i++) {
+        for (int i = 0; i < this.fleetSize; i++) {
             Coordinate coordinate;
             do coordinate = this.generateRandomCoordinate();
             while(this.hasSubmarineOnCoordinate(coordinate));
@@ -38,7 +38,7 @@ public class Bot extends Player{
 
         botTest.getBoard().printGamingBoard();
 
-        for(int i=0; i<40; i++) {
+        for(int i=0; i<10; i++) {
             Coordinate JogadaBot = botTest.makePlay(botTest.getBoard());
             botTest.getBoard().receivePlay(JogadaBot);
 

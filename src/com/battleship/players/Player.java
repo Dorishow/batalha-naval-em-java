@@ -5,7 +5,7 @@ import com.battleship.board.Coordinate;
 import com.battleship.board.enums.Error;
 
 public class Player {
-    private final int fleetSize = 3;
+    protected final int fleetSize = 3;
     private String name = "Player";
     private final com.battleship.board.Board Board = new Board(this.fleetSize);
 
