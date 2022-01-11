@@ -78,7 +78,7 @@ public class Board {
             for (int columnIndex=0; columnIndex<10; columnIndex++)
                 if (gamingBoard[lineIndex][columnIndex].symbol != CoordinateStates.SUBMARINE.symbol)
                     System.out.printf("  %C  |", gamingBoard[lineIndex][columnIndex].symbol);
-                else System.out.printf("  %C  |", CoordinateStates.EMPTY.symbol);
+                else System.out.printf("  %C  |", CoordinateStates.SUBMARINE.symbol);
             System.out.printf("%n");
         }
     }
