@@ -7,16 +7,16 @@ import com.battleship.board.enums.Error;
 public class Player {
     protected final int fleetSize = 3;
     private String name = "Player";
-    private final com.battleship.board.Board Board = new Board(this.fleetSize);
+    private final Board board = new Board(this.fleetSize);
 
     public void setName(String name) { this.name = name; }
     public String getName() { return name; }
 
-    public com.battleship.board.Board getBoard() { return Board; }
+    public com.battleship.board.Board getBoard() { return board; }
 
 
     protected boolean hasSubmarineOnCoordinate(Coordinate coordinate){
-        return Board.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
+        return board.placeShips(coordinate) == Error.COORDINATE_ALREADY_HAS_SUBMARINE.name();
     }
 
     protected boolean hasPlayAlreadyBeenMade(Coordinate attackedCoordinate, Board opponentBoard){
