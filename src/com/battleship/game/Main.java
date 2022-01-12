@@ -35,12 +35,12 @@ public class Main {
             System.out.printf("The player attacks %n");
             Coordinate Jogada = playerHuman.makePlay(bot.getBoard());
             bot.getBoard().receivePlay(Jogada);
-            bot.printPlayerBoard();
+            bot.printPlayerBoard(false);
 
             System.out.printf("The bot attacks %n");
             Coordinate JogadaBot = bot.makePlay(playerHuman.getBoard());
             playerHuman.getBoard().receivePlay(JogadaBot);
-            playerHuman.printPlayerBoard();
+            playerHuman.printPlayerBoard(false);
 
             if (isGameFinished(playerHuman, bot))
             {

@@ -63,10 +63,13 @@ public class Board {
         return (!(this.isEmpty(coordinate)||this.hasSubmarine(coordinate)));
     }
 
-    public void printGamingBoard(){
+    public void printGamingBoard(boolean hideSubmarines){
         printDashedLine();
         printTableHeadder();
-        printCensoredBoard();
+        if (hideSubmarines)
+            printCensoredBoard();
+        else
+            printCompleteBoard();
         printDashedLine();
         System.out.printf("%n");
     }
@@ -78,7 +81,17 @@ public class Board {
             for (int columnIndex=0; columnIndex<10; columnIndex++)
                 if (gamingBoard[lineIndex][columnIndex].symbol != CoordinateStates.SUBMARINE.symbol)
                     System.out.printf("  %C  |", gamingBoard[lineIndex][columnIndex].symbol);
-                else System.out.printf("  %C  |", CoordinateStates.SUBMARINE.symbol);
+                else System.out.printf("  %C  |", CoordinateStates.EMPTY.symbol);
+            System.out.printf("%n");
+        }
+    }
+
+    private void printCompleteBoard(){
+        for (int lineIndex = 0; lineIndex < this.gamingBoardLineLength; lineIndex++){
+            printDashedLine();
+            System.out.printf("|  %C  |", CoordinateService.convertNumberToLetter(lineIndex));
+            for (int columnIndex=0; columnIndex<10; columnIndex++)
+                System.out.printf("  %C  |", gamingBoard[lineIndex][columnIndex].symbol);
             System.out.printf("%n");
         }
     }

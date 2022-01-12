@@ -51,12 +51,12 @@ public class Human extends Player{
             System.out.printf("The player attacks %n");
             Coordinate Jogada = Test.makePlay(BotTest.getBoard());
             BotTest.getBoard().receivePlay(Jogada);
-            BotTest.printPlayerBoard();
+            BotTest.printPlayerBoard(false);
 
             System.out.printf("The bot attacks %n");
             Coordinate JogadaBot = BotTest.makePlay(Test.getBoard());
             Test.getBoard().receivePlay(JogadaBot);
-            Test.printPlayerBoard();
+            Test.printPlayerBoard(false);
         }
 
         if (Test.getBoard().getFleetSize() == 0)

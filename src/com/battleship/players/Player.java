@@ -23,9 +23,9 @@ public class Player {
         return opponentBoard.receivePlay(attackedCoordinate) == Error.INVALID_PLAY.name();
     }
 
-    public void printPlayerBoard(){
+    public void printPlayerBoard(boolean hideSubmarines){
         getBoard().printDashedLine();
         System.out.println(this.getName());
-        getBoard().printGamingBoard();
+        getBoard().printGamingBoard(hideSubmarines);
     }
 }
