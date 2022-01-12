@@ -39,6 +39,10 @@ public class Human extends Player{
 
 
     public static void main(String args[]) {
+//        ---------------------------------------
+//        TESTES
+//        ---------------------------------------
+
         Human Test = new Human();
         System.out.println("What's your name Soldier?");
         Test.setName(InputScanner.scan.next());
