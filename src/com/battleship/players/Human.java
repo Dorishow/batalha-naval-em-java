@@ -13,6 +13,7 @@ public class Human extends Player{
 
         for (int i = 0; i < this.fleetSize;) {
             System.out.printf("Set a coordinate to place the %dº ship: %n", i + 1);
+            explainCoordinatePattern();
             Coordinate coordinate = CoordinateService.createCoordinateByInput();
             if (coordinate.isValid())
                 if(!this.hasSubmarineOnCoordinate(coordinate)){
@@ -28,6 +29,7 @@ public class Human extends Player{
     public Coordinate makePlay(Board opponentBoard){
         Coordinate attackCoordinate;
         System.out.printf("%nSet a coordinate to attack the enemy's Board: %n");
+        explainCoordinatePattern();
         attackCoordinate = CoordinateService.createCoordinateByInput();
         if (attackCoordinate.isValid())
             if(!this.hasPlayAlreadyBeenMade(attackCoordinate, opponentBoard))
@@ -35,6 +37,11 @@ public class Human extends Player{
             else System.out.println("You already played that coordinate");
         System.out.println("This play is not valid, set a new coordinate to attack the enemy's Board");
         return makePlay(opponentBoard);
+    }
+
+    public void explainCoordinatePattern(){
+        System.out.printf("The coordinate need a letter from A to J and a number from 0 to 9%n");
+        System.out.printf("Ex.: A0, F5, E4...%n");
     }
 
 
