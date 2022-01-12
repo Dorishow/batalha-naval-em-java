@@ -25,7 +25,7 @@ public class Player {
 
     public void printPlayerBoard(boolean hideSubmarines){
         getBoard().printDashedLine();
-        System.out.println(this.getName());
+        System.out.println(this.getName() + "'s Board");
         getBoard().printGamingBoard(hideSubmarines);
     }
 }

@@ -24,6 +24,7 @@ public class Main {
         Human playerHuman = new Human();
         System.out.println("What's your name Soldier?");
         playerHuman.setName(InputScanner.scan.next());
+        System.out.printf("%n");
         Bot bot = new Bot();
 
         playerHuman.setupBoard();
@@ -32,10 +33,14 @@ public class Main {
         gameState = GameStates.GAME_RUNNING;
 
         while (gameState == GameStates.GAME_RUNNING) {
-            System.out.printf("The player attacks %n");
+            System.out.printf("XXXXXXXXXXXXXXXX Now it's time to attack the enemy XXXXXXXXXXXXXXXX %n");
             Coordinate Jogada = playerHuman.makePlay(bot.getBoard());
             bot.getBoard().receivePlay(Jogada);
             bot.printPlayerBoard(false);
+
+            if (isGameFinished(playerHuman, bot))
+                gameState = GameStates.GAME_OVER;
+
 
             System.out.printf("The bot attacks %n");
             Coordinate JogadaBot = bot.makePlay(playerHuman.getBoard());
@@ -43,9 +48,8 @@ public class Main {
             playerHuman.printPlayerBoard(false);
 
             if (isGameFinished(playerHuman, bot))
-            {
                 gameState = GameStates.GAME_OVER;
-            }
+
         }
         declareWinner(bot, playerHuman);
 }
