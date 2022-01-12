@@ -30,13 +30,15 @@ public class Main {
         playerHuman.setupBoard();
         bot.setupBoard();
 
+        playerHuman.printPlayerBoard(false);
+
         gameState = GameStates.GAME_RUNNING;
 
         while (gameState == GameStates.GAME_RUNNING) {
             System.out.printf("XXXXXXXXXXXXXXXX Now it's time to attack the enemy XXXXXXXXXXXXXXXX %n");
             Coordinate Jogada = playerHuman.makePlay(bot.getBoard());
             bot.getBoard().receivePlay(Jogada);
-            bot.printPlayerBoard(false);
+            bot.printPlayerBoard(true);
 
             if (isGameFinished(playerHuman, bot))
                 gameState = GameStates.GAME_OVER;
