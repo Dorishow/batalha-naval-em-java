@@ -6,7 +6,7 @@ import com.battleship.players.Bot;
 import com.battleship.players.Human;
 import com.utils.InputScanner;
 
-public class main{
+public class Main {
     private static boolean isGameFinished(Human playerHuman, Bot bot){
         return !(playerHuman.getBoard().getFleetSize() != 0 && bot.getBoard().getFleetSize() != 0);
     }

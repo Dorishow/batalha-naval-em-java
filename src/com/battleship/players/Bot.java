@@ -8,6 +8,9 @@ public class Bot extends Player{
 
     private String name = "Bot";
 
+    @Override
+    public String getName() { return name; }
+
     public void setupBoard(){
        this.getBoard().createEmptyBoard();
 
@@ -29,21 +32,6 @@ public class Bot extends Player{
 
     private Coordinate generateRandomCoordinate(){
         return new Coordinate(RandomNumbersGenerator.generateRandomNumber.nextInt(10),RandomNumbersGenerator.generateRandomNumber.nextInt(10));
-    }
-
-    public static void main(String args[]) {
-        Bot botTest = new Bot();
-
-        botTest.setupBoard();
-
-        botTest.getBoard().printGamingBoard();
-
-        for(int i=0; i<10; i++) {
-            Coordinate JogadaBot = botTest.makePlay(botTest.getBoard());
-            botTest.getBoard().receivePlay(JogadaBot);
-
-            botTest.getBoard().printGamingBoard();
-        }
     }
 }
 
