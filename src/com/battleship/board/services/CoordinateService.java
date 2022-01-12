@@ -74,6 +74,11 @@ public class CoordinateService {
 
 
     public static void main(String[] args) {
+
+//        ---------------------------------------
+//        TESTES
+//        ---------------------------------------
+
         System.out.println("Indique a coordenada");
         Coordinate NewCoordinate = createCoordinateByInput();
         System.out.println(NewCoordinate);

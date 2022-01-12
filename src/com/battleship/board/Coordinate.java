@@ -42,8 +42,4 @@ public class Coordinate {
                 ", column: " + column +
                 " }";
     }
-
-    public static void main(String[] args) {
-
-    }
 }
