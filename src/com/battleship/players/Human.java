@@ -40,7 +40,7 @@ public class Human extends Player{
     }
 
     public void explainCoordinatePattern(){
-        System.out.printf("The coordinate need a letter from A to J and a number from 0 to 9%n");
+        System.out.printf("The coordinate must be a letter from A to J followed by  a number from 0 to 9%n");
         System.out.printf("Ex.: A0, F5, E4...%n");
     }
 

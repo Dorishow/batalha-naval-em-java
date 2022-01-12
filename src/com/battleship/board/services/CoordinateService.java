@@ -22,7 +22,7 @@ public class CoordinateService {
     public static String coordinateInputHandler(String coordinateString){
 
         if (coordinateString.length() != 2){
-            if(coordinateString.length() > 2) System.out.println("Too much longer input");
+            if(coordinateString.length() > 2) System.out.println("Too long input");
             else  System.out.println("Too short input");
             return Error.INVALID_INPUT.name();
         }
